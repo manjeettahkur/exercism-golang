@@ -16,7 +16,7 @@ func Score(word string) int {
 	var value8 = regexp.MustCompile("[JX]")
 	var value10 = regexp.MustCompile("[QZ]")
 
-	var score int = 0
+	var score int
 
 	for _, letter := range word {
 		switch {
