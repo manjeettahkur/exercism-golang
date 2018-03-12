@@ -1,0 +1,49 @@
+package pascal
+
+import "fmt"
+
+// func main() {
+// 	Triangle(2)
+// }
+
+// Triangle bla bla bla
+func Triangle(r int) [][]int {
+	res := [][]int{
+		{1},
+		{1, 1},
+	}
+	//lastRow := res[1]
+	firstAndLastNumber := 1
+	if r == 1 {
+		res = [][]int{{1}}
+		return res
+	} else if r == 2 {
+		return res
+	}
+
+	for i := 2; i <= r; i++ {
+		ResultRow := []int{}
+		if i == 2 {
+			ResultRow = []int{1, 2, 1}
+			continue
+		}
+		TmpRow := lastRow
+		TmpRowSize := len(TmpRow)
+
+		for u := range TmpRow {
+			if u == 0 {
+				ResultRow = append(ResultRow, firstAndLastNumber)
+				continue
+			}
+			ResultRow = append(ResultRow, TmpRow[u]+TmpRow[u-1])
+			if u == TmpRowSize-1 {
+				ResultRow = append(ResultRow, firstAndLastNumber)
+				continue
+			}
+		}
+		lastRow = ResultRow
+	}
+	fmt.Println(lastRow)
+	res = append(res, lastRow)
+	return res
+}
